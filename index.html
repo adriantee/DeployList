@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="mainApp">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Deploy Checklist</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<script src="js/main.js"></script>
+	<!-- bs -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body class="container-fluid" ng-controller="MainController">
+	<div class="row">	
+		<div class="col-sm-12"><h2>Deploy Checklist for {{projName}}</h2></div>
+		<div class="col-sm-12"><em>The following checks must pass before live.</em></div>
+	</div>
+	<div class="row">		
+		<div class="col-sm-12"><p class="status bg-danger" ng-class="{'success':passed==total}">Status: {{passed}} of {{total}} Passed</p></div>
+	</div>
+	<div class="row checklist">
+		<div class="col-lg-4 col-md-6 col-sm-12" ng-repeat="proj in projdata track by $index">
+			<h3>{{proj.title}}</h3>
+			<ul>
+				<li class="btn btn-danger" 
+					ng-repeat="item in proj.data track by $index"
+					ng-click="toggleMe($event, [$index])">{{item}}</li>
+			</ul>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">		
+		<div class="col-sm-12">&copy; MRM</div>
+	</div>
+	<div class="row">		
+		<div class="col-sm-12">&nbsp;</div>
+	</div>
+</body>
+</html>
+
